@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Lobby {{room.room_name}}</title>
+</head>
+<body>
+    <h1>{{room.room_name}}</h1>
+    <p>
+        Room ID : {{room.id}}
+        <br>
+        Room information here.
+        <br>
+        Code: {{room.room_code}}
+        <br>
+        Link to enter game. Redirect to game app.
+        <br><br>
+        <a href="{% url 'lobby:index' %}">Return to Lobby</a>
+    </p>
+</body>
+</html>

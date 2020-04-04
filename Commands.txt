@@ -1,0 +1,10 @@
+python manage.py runserver
+python manage.py startapp <APPNAME>
+
+python manage.py makemigrations <APPNAME>
+python manage.py sqlmigrate <APPNAME> <MIGRATION_NUMBER>
+python manage.py migrate
+
+python manage.py createsuperuser
+chance
+4dminPassword!

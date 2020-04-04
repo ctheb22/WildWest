@@ -1,0 +1,14 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WildWest Index</title>
+</head>
+<body>
+    <h1>Game Lobby</h1>
+    <a href="{% url 'lobby:roomList' %}">View Room List</a>
+    <br><br>
+    {% include './Components/createRoomForm.html' %}
+</body>
+</html>

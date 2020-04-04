@@ -1,0 +1,7 @@
+<form action="{% url 'lobby:createRoom' %}" method="post">
+    {% csrf_token %}
+    <label for="roomName">Room Name:</label>
+    <input type="text" name="roomName" value="Enter Name" id="roomName">
+    <br>
+    <input type="submit" value="Create">
+</form>
