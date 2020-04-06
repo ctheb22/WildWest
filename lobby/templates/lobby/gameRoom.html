@@ -13,7 +13,7 @@
         <br>
         Code: {{room.room_code}}
         <br>
-        Link to enter game. Redirect to game app.
+        <a href="{% url 'lobby:takeASeat' room.id%}">Join Game</a>
         <br><br>
         <a href="{% url 'lobby:index' %}">Return to Lobby</a>
     </p>

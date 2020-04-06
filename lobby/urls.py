@@ -7,4 +7,5 @@ urlpatterns = [
     path('list/', views.roomList, name='roomList'),
     path('<int:game_id>/', views.gameRoom, name='gameRoom'),
     path('createRoom/', views.createRoom, name='createRoom'),
+    path('<int:game_id/table/', views.takeASeat, name='takeASeat'),
 ]
