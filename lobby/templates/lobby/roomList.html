@@ -9,13 +9,13 @@
     {% if rooms %}
     <ul>
         {% for room in rooms %}
-        <li><a href="{% url 'lobby:gameRoom' room.id %}">{{ room.room_name }}</a></li>
+        <li><a href="{% url 'WestLobby:gameRoom' room.id %}">{{ room.room_name }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
         <p>No rooms are available.</p>
     {% endif %}
     <br>
-    <a href="{% url 'lobby:index' %}">Return to Lobby</a>
+    <a href="{% url 'WestLobby:index' %}">Return to Lobby</a>
 </body>
 </html>

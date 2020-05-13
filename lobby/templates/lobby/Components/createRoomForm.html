@@ -1,4 +1,4 @@
-<form action="{% url 'lobby:createRoom' %}" method="post">
+<form action="{% url 'WestLobby:createRoom' %}" method="post">
     {% csrf_token %}
     <label for="roomName">Room Name:</label>
     <input type="text" name="roomName" value="Enter Name" id="roomName">

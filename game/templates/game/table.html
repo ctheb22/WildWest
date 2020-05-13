@@ -1,0 +1,50 @@
+<!-- chat/templates/chat/room.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Table</title>
+</head>
+<body>
+    <textarea id="table-log" cols="100" rows="20"></textarea><br>
+    <input id="table-message-input" type="text" size="100"><br>
+    <input id="table-message-submit" type="button" value="Send">
+    {{ table_code|json_script:"table-code" }}
+    <script>
+        const tableCode = JSON.parse(document.getElementById('table-code').textContent);
+
+        const tableSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/table/'
+            + tableCode
+            + '/'
+        );
+
+        tableSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#table-log').value += (data.message + '\n');
+        };
+
+        tableSocket.onclose = function(e) {
+            console.error('Table socket closed unexpectedly');
+        };
+
+        document.querySelector('#table-message-input').focus();
+        document.querySelector('#table-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#table-message-submit').click();
+            }
+        };
+
+        document.querySelector('#table-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#table-message-input');
+            const message = messageInputDom.value;
+            tableSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        };
+    </script>
+</body>
+</html>

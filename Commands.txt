@@ -8,3 +8,15 @@ python manage.py migrate
 python manage.py createsuperuser
 chance
 4dminPassword!
+
+Channels:
+Channels uses "Redis" as it's channel layer store. Redis is apparently a
+  db-like service that runs on a server and integrates nicely with channels.
+  The easiest/quickest way to get a redis server running is to use docker to
+  spin up a self contained server locally.
+
+python -m pip install channels_redis
+
+docker run -p 6379:6379 -d redis:5
+#Start redis docker using port 6379 for game. This is needed for channels to
+  communicate with each other.

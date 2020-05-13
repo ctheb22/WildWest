@@ -18,8 +18,8 @@ from django.urls import path
 from django.urls import include, path
 
 urlpatterns = [
-    path("", include('lobby.urls')),
-    path('lobby/', include('lobby.urls')),
+    path('', include('lobby.urls', namespace="NamespaceToRemoveWarning")),
+    path('lobby/', include('lobby.urls', namespace='WestLobby')),
+    path('game/', include('game.urls', namespace='game')),
     path('admin/', admin.site.urls),
-
 ]

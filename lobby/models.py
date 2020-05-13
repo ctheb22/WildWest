@@ -2,8 +2,8 @@ from django.db import models
 from django.utils import timezone
 
 class GameTable(models.Model):
-    number_of_players = models.IntField()
-    max_players = models.IntField()
+    number_of_players = models.IntegerField()
+    max_players = models.IntegerField()
     def __str__(self):
         return self.room_name
 
