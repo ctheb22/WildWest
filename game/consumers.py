@@ -49,6 +49,10 @@ class TableConsumer(WebsocketConsumer):
             action_type = text_data_json['action_type']
             args = text_data_json['args']
 
+            self.send(
+                text_data=action.performMe(action_type, json.loads(event['args']))
+            )
+
             async_to_sync(self.channel_layer.group_send)(
                 self.table_group_code,
                 {
@@ -76,12 +80,10 @@ class TableConsumer(WebsocketConsumer):
         initiator = event['initiator']
 
         if initiator != self.channel_name:
-            #Parse the action
             action = event['action_type']
-            args = event['args']
+            args = json.loads(event['args'])
             self.send(
-                text_data=action.perform(action, args)
+                text_data=action.performOther(action, initiator, args)
             )
-        #else:
-            #We sent the message and should have already
-            #done something about it.
+        #if we initiated this perform_action, we've already handled
+        #the event.
