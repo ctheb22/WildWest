@@ -13,7 +13,7 @@
         <br>
         Code: {{room.room_code}}
         <br>
-        <a href="{% url 'WestLobby:takeASeat' room.id%}">Join Game</a>
+        <a href="{% url 'WestLobby:takeASeat' room.room_code%}">Join Game</a>
         <br><br>
         <a href="{% url 'WestLobby:index' %}">Return to Lobby</a>
     </p>

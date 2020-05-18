@@ -7,6 +7,7 @@
 </head>
 <body>
     <textarea id="table-log" cols="100" rows="20"></textarea><br>
+    <input id="table-channel-name" type="text" size="50"><br>
     <input id="table-message-input" type="text" size="100"><br>
     <input id="table-message-submit" type="button" value="Send">
     {{ table_code|json_script:"table-code" }}
@@ -23,7 +24,7 @@
 
         tableSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#table-log').value += (data.message + '\n');
+            document.querySelector('#table-log').value += (data.name + ': ' + data.message + '\n');
         };
 
         tableSocket.onclose = function(e) {
@@ -40,8 +41,11 @@
         document.querySelector('#table-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#table-message-input');
             const message = messageInputDom.value;
+            const nameInputDom = document.querySelector('#table-channel-name');
+            const name = nameInputDom.value;
             tableSocket.send(JSON.stringify({
-                'message': message
+                'message': message,
+                'name' : name
             }));
             messageInputDom.value = '';
         };

@@ -1,0 +1,133 @@
+Perform Actions (these are from client actions from the server)
+  Draw
+  {
+    'action_type': 'draw'
+    'cards': number
+    'facing': 'down' or 'up'
+  }
+
+  Discard
+  {
+    'action_type': 'discard'
+    'facing': 'down' or 'up'
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+  Shuffle
+  {
+    'action_type': 'shuffle'
+  }
+
+  DisToDraw
+  {
+    'action_type': 'disToDraw'
+    'order' : 'top' or 'bottom'
+    'shuffle' : 'together', 'discard_only', 'No'
+  }
+
+  Play
+  {
+    'action_type': 'play'
+    'facing': 'down' or 'up'
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+  Sweep
+  {
+    'action_type': 'sweep'
+    'sweep_all': 'yes' or 'no'
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+  SetAside
+  {
+    'action_type': 'setAside'
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+Client Update Messages (these are updates from the server to the client)
+  Draw : draw -> hand
+  {
+    'initiator': 'me' or a channel_name
+    'facing': 'down' or 'up'
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+  Discard : hand -> discard
+  {
+    'initiator': 'me' or a channel_name
+    'facing': 'down' or 'up'
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+  Shuffle : draw reorder
+  {
+    'initiator': 'me' or a channel_name
+  }
+
+  DisToDraw : discard pile -> draw
+  {
+    'initiator': 'me' or a channel_name
+    'order' : 'top' or 'bottom'
+    'shuffle' : 'together', 'discard_only', 'No'
+  }
+
+  Play : Hand -> Play Area
+  {
+    'initiator': 'me' or a channel_name
+    'facing': 'down' or 'up'
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+  Sweep : Play Area -> Discard
+  {
+    'initiator': 'me' or a channel_name
+    'sweep_all': 'yes' or 'no'
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+  SetAside : Anywhere -> Aside
+  {
+    'initiator': 'me' or a channel_name
+    'cards': [
+      {
+        'card': card value
+      }
+    ]
+  }
+
+  FUTURE:
+  getAside : Aside -> Play Area
+  pickUp : Play Area -> Hand

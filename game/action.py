@@ -1,66 +1,42 @@
 import json
 
 class action() :
-    #needs to return the json for the action.
-    other_action_dict =
+
+    action_dict =
     {
-        'draw' : drawOther,
-        'discard' : discardOther,
-        'setAside' : setAsideOther,
-        'shuffle' : shuffleOther,
-        'distodraw' : disToDrawOther,
-        'play' : playOther,
+        'draw' : draw,
+        'discard' : discard,
+        'setAside' : setAside,
+        'shuffle' : shuffle,
+        'distodraw' : disToDraw,
+        'play' : play,
+        'sweep' : sweep,
     }
 
-    me_action_dict =
-    {
-        'draw' : drawMe,
-        'discard' : discardMe,
-        'setAside' : setAsideMe,
-        'shuffle' : shuffleMe,
-        'distodraw' : disToDrawMe,
-        'play' : playMe,
-    }
-
-    def performOther(self, action, initiaitor, args):
-        return other_action_dict[action](initiator, args)
-        #Actions performed by others are processed differently for me.
-
-    def performMe(self, action, args):
-        return me_action_dict[action](args)
+    def performAction(initiator, json_data):
+        return action_dict[json_data['action_type']](initiator, json_data)
         #Actions performed by me are processed differently for others.
 
-    def drawMe(args): #Draw -> My Hand
+    def draw(initiator, json_data): #Draw -> My Hand
         #This function needs to update the database (draw cards)
         #and then return JSON with all information regarding that
         #action, so that others can update their client.
 
-    def discardMe(args): #Any -> Discard
+    def discard(initiator, json_data): #Any -> Discard
         #This function needs to update the database (draw cards)
         #and then return JSON with all information regarding that
         #action, so that others can update their client.
 
-    def shuffleMe(args): #Reorder randomly the Draw.
+    def shuffle(initiator, json_data): #Reorder randomly the Draw.
+        return ''
 
-    def disToDrawMe (args): #All Discard -> Draw
+    def disToDraw(initiator, json_data): #All Discard -> Draw
 
-    def playMe(args): #Hand -> Play Area
+    def play(initiator, json_data): #Hand -> Play Area
 
-#Other Versions of Me functions
+    def setAside(initiator, json_data):
 
-    def playOther(initiator, args):
-
-    def shuffleOther(initiator, args):
-
-    def disToDrawOther (initiator, args):
-
-    def setAsideMe(args): #Any -> aside
-
-    def drawOther(initiator, args):
-
-    def discardOther(initiator, args):
-
-    def setAsideOther(initiator, args):
+    def sweep(initiator, json_data):
 
 #Generic Helper Functions
     def move (card, source, destination):

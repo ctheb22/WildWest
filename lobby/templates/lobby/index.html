@@ -7,8 +7,18 @@
 </head>
 <body>
     <h1>Game Lobby</h1>
-    <a href="{% url 'WestLobby:roomList' %}">View Room List</a>
-    <br><br>
+    <h2>Available Rooms<h2>
+    {% if rooms %}
+    <ul>
+        {% for room in rooms %}
+        <li><a href="{% url 'WestLobby:gameRoom' room.id %}">{{ room.room_name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No rooms are available.</p>
+    {% endif %}
+    <h2>Create New Room</h2>
+    <br>
     {% include './Components/createRoomForm.html' %}
 </body>
 </html>
